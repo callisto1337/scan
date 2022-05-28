@@ -1,95 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { Header } from '@components';
-import {
-  // Button,
-  Container,
-  Form,
-} from 'react-bootstrap';
+import React from 'react';
+import { Spin, Typography } from 'antd';
+import { useScanCode } from '~src/hocs';
+import * as styles from './styles.module.scss';
 
-const INPUT_PLACEHOLDER = 'Отсканируйте штрих-код';
+const { Title } = Typography;
 
-export function App() {
-  const [barcode, setBarcode] = useState<string>();
-  // const [db, setDb] = useState<string | null>(null);
-  // const searchedValue = '46902470463891';
+/**
+ * TODO
+ *
+ * 1. Минимальная длина штрих-кода (либо формат)
+ */
 
-  // function onStart() {
-  //   alert('start');
-  // }
-
-  // function onUpload(event: any): void {
-  //   const file = event?.target?.files[0];
-  //   const reader = new FileReader();
-  //
-  //   if (!file) {
-  //     return;
-  //   }
-  //
-  //   reader.onload = function (event) {
-  //     const contents: any = event?.target?.result;
-  //
-  //     if (contents) {
-  //       setDb(contents);
-  //     }
-  //   };
-  //
-  //   reader.readAsText(file);
-  // }
-  //
-  // function onSearch() {
-  //   console.log(
-  //     db?.split('\n').find((item) => {
-  //       return item.includes(searchedValue);
-  //     })
-  //   );
-  // }
-
-  function pasteListener(event: ClipboardEvent) {
-    const scannedBarcode = event.clipboardData?.getData('text');
-
-    if (scannedBarcode) {
-      setBarcode(scannedBarcode);
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('paste', pasteListener);
-
-    return () => {
-      document.removeEventListener('paste', pasteListener);
-    };
-  }, []);
+export function App(): JSX.Element {
+  const { barCode, isLoading } = useScanCode();
 
   return (
-    <div>
-      <Header />
-      <Container className="my-4">
-        {/*<div className="my-3">*/}
-        {/*  <Button onClick={onStart}>Сканировать</Button>*/}
-        {/*</div>*/}
-        <div>
-          <Form.Group
-          // onChange={onUpload}
-          // controlId="formFileSm"
-          >
-            {/*<Form.Label>Small file input example</Form.Label>*/}
-            <Form.Control
-              // readOnly
-              disabled
-              type="text"
-              size="sm"
-              placeholder={barcode || INPUT_PLACEHOLDER}
-            />
-            {/*<Form.Control className="mt-2" type="file" size="sm" />*/}
-          </Form.Group>
-          {/*<Button variant="secondary" onClick={onUpload}>*/}
-          {/*  Загрузить БД*/}
-          {/*</Button>*/}
-        </div>
-        {/*<div className="mt-2">*/}
-        {/*  <Button onClick={onSearch}>Поиск</Button>*/}
-        {/*</div>*/}
-      </Container>
+    <div className={styles.page}>
+      <Title level={1} className={styles.title}>
+        Штрих-код
+      </Title>
+      <Title level={3}>
+        {isLoading ? (
+          <span className={styles.loader}>
+            <Spin />
+          </span>
+        ) : (
+          <span className={styles.bold}>{barCode || 'Пусто'}</span>
+        )}
+      </Title>
     </div>
   );
 }

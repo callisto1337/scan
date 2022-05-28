@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "strict": true,
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "target": "ES3",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@components": ["components"],
-      "@components/*": ["components/*"]
-    },
+      "~*": ["./*"]
+    }
   }
 }
