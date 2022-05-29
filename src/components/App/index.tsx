@@ -12,7 +12,7 @@ const { Title } = Typography;
  */
 
 export function App(): JSX.Element {
-  const { barCode, isLoading } = useScanCode();
+  const { barCode, isReading } = useScanCode();
 
   return (
     <div className={styles.page}>
@@ -20,12 +20,12 @@ export function App(): JSX.Element {
         Штрих-код
       </Title>
       <Title level={3}>
-        {isLoading ? (
+        {isReading ? (
           <span className={styles.loader}>
             <Spin />
           </span>
         ) : (
-          <span className={styles.bold}>{barCode || 'Пусто'}</span>
+          <span className={styles.bold}>{barCode || ''}</span>
         )}
       </Title>
     </div>
