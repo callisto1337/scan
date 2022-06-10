@@ -1,11 +1,6 @@
 import React from 'react';
-import { Typography } from '~node_modules/antd';
 import { useScanCode } from '~src/hooks';
-import { PageSpinner, SearchResult } from '~src/components/ui';
-import PlaceholderImage from '~src/static/images/placeholder.svg';
-import styles from './styles.module.scss';
-
-const { Title } = Typography;
+import { PageSpinner, SearchResult, Placeholder } from '~src/components/ui';
 
 export function ScannerPage(): JSX.Element {
   const { barCode, isLoading } = useScanCode();
@@ -18,12 +13,5 @@ export function ScannerPage(): JSX.Element {
     return <SearchResult />;
   }
 
-  return (
-    <div className={styles.welcome}>
-      <img className={styles.placeholder} src={PlaceholderImage} alt="" />
-      <Title className={styles.title} level={4}>
-        Отсканируйте <span className={styles.nobr}>штрих-код</span>
-      </Title>
-    </div>
-  );
+  return <Placeholder />;
 }
