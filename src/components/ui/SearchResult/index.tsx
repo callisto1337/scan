@@ -1,7 +1,7 @@
 import React from 'react';
-import * as AtnD from 'antd';
+import { Table } from 'antd';
 
-export function Table(): JSX.Element {
+export function SearchResult(): JSX.Element {
   const dataSource = [
     {
       key: '1',
@@ -28,7 +28,5 @@ export function Table(): JSX.Element {
     },
   ];
 
-  return (
-    <AtnD.Table pagination={false} dataSource={dataSource} columns={columns} />
-  );
+  return <Table pagination={false} dataSource={dataSource} columns={columns} />;
 }

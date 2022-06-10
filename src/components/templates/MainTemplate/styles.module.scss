@@ -1,0 +1,22 @@
+.mainTemplate {
+  position: relative;
+  padding-bottom: 50px;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  display: flex;
+  flex-direction: column;
+}
+
+.tabBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-top: 1px solid lightgray;
+}
+
+.content {
+  overflow: auto;
+  min-height: 100%;
+}
