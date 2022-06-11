@@ -39,7 +39,11 @@ export function TabBar(props: TabBarProps): JSX.Element {
   }
 
   return (
-    <AntMTabBar className={className} onChange={onChangeRouteHandler}>
+    <AntMTabBar
+      className={className}
+      onChange={onChangeRouteHandler}
+      activeKey={navLink}
+    >
       {tabs.map((item) => (
         <AntMTabBar.Item key={item.key} icon={item.icon} />
       ))}
