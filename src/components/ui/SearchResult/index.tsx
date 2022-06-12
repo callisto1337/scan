@@ -1,25 +1,28 @@
 import React from 'react';
-import { Table } from 'antd';
+import { Table, Typography } from 'antd';
+import { NormalizedBarcode } from '~src/utils';
+import styles from './styles.module.scss';
 
-export function SearchResult(): JSX.Element {
-  const dataSource = [
-    {
-      key: '1',
-      value: 123123123,
-      barCode: 'H012333333123123',
-    },
-    {
-      key: '2',
-      value: 123123123,
-      barCode: 'H012333333123123',
-    },
-  ];
+const { Title } = Typography;
+
+interface DefaultSearchProps {
+  data?: NormalizedBarcode[];
+}
+
+interface SearchResultProps extends DefaultSearchProps {}
+
+const defaultProps: DefaultSearchProps = {
+  data: [],
+};
+
+export function SearchResult(props: SearchResultProps): JSX.Element {
+  const { data } = props;
 
   const columns = [
     {
       title: 'Штрих-код',
-      dataIndex: 'barCode',
-      key: 'barCode',
+      dataIndex: 'barcode',
+      key: 'barcode',
     },
     {
       title: 'Значение',
@@ -28,5 +31,14 @@ export function SearchResult(): JSX.Element {
     },
   ];
 
-  return <Table pagination={false} dataSource={dataSource} columns={columns} />;
+  return (
+    <div>
+      <Title level={4} className={styles.title}>
+        Результаты поиска
+      </Title>
+      <Table pagination={false} dataSource={data} columns={columns} />
+    </div>
+  );
 }
+
+SearchResult.defaultProps = defaultProps;
