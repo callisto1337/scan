@@ -10,7 +10,12 @@ interface UseScanCodeReturn {
   isLoading: boolean;
 }
 
-export function useScanBarCode(): UseScanCodeReturn {
+interface UseScanBarCodeProps {
+  disabled?: boolean;
+}
+
+export function useScanBarCode(props?: UseScanBarCodeProps): UseScanCodeReturn {
+  const { disabled } = props || {};
   const [barCode, setBarCode] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const parsingTimerId = useRef<number | null>(null);
@@ -26,6 +31,10 @@ export function useScanBarCode(): UseScanCodeReturn {
     onScan.attachTo(document, {
       avgTimeByChar: 40,
       onScan: function (scannedBarcode: string) {
+        if (disabled) {
+          return;
+        }
+
         if (scannedBarcode) {
           setIsLoading(false);
           // setBarcode(scannedBarcode);
@@ -35,6 +44,10 @@ export function useScanBarCode(): UseScanCodeReturn {
         }
       },
       onKeyDetect: function (keyCode) {
+        if (disabled) {
+          return;
+        }
+
         if (
           keyCode === ON_SCAN_BUTTON ||
           keyCode === ON_SCAN_BUTTON_ADDITIONAL

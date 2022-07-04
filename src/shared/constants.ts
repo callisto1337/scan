@@ -1,2 +1,2 @@
-export const LS_BARCODES_DATA_NAME = 'barcodes';
-export const LS_BARCODES_FILE_NAME = 'barcodesFileName';
+export const LS_DATA_NAME = 'products';
+export const LS_DATA_FILE_NAME = 'productsFileName';

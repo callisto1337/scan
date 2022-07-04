@@ -1,15 +1,21 @@
 import React from 'react';
 import { useScanBarCode } from '~src/hooks';
 import { PageSpinner, SearchResult, Placeholder } from '~src/components/ui';
-import products from '~src/data/products';
-import { ProductInfo } from '~src/types/ProductInfo';
+import { ProductInfo, ProductsData } from '~src/types/ProductsData';
+import useLocalStorage from '~node_modules/use-local-storage';
+import { LS_DATA_NAME } from '~src/shared/constants';
 import styles from './styles.module.scss';
 
 export function ScannerPage(): JSX.Element {
-  const { barCode, isLoading } = useScanBarCode();
-  const searchResult = products.data.filter(
+  const [data] = useLocalStorage<ProductsData | null>(LS_DATA_NAME, null);
+  const isScannerDisabled = !data;
+  const { barCode, isLoading } = useScanBarCode({
+    disabled: isScannerDisabled,
+  });
+  const searchResult = data?.products.filter(
     (item: ProductInfo) => item.barCode === barCode
   );
+  const currentMode = data ? 'goScan' : 'getData';
 
   if (isLoading) {
     return <PageSpinner text="Идет поиск" />;
@@ -19,5 +25,5 @@ export function ScannerPage(): JSX.Element {
     return <SearchResult data={searchResult} />;
   }
 
-  return <Placeholder className={styles.placeholder} />;
+  return <Placeholder className={styles.placeholder} mode={currentMode} />;
 }
