@@ -1,25 +1,21 @@
-import React, { useMemo } from 'react';
-import { useScanCode } from '~src/hooks';
+import React from 'react';
+import { useScanBarCode } from '~src/hooks';
 import { PageSpinner, SearchResult, Placeholder } from '~src/components/ui';
-import { barcodes } from '~src/data/barcodes';
-import { getNormalizedBarcodes } from '~src/utils/getNormalizedBarcodes';
+import products from '~src/data/products';
+import { ProductInfo } from '~src/types/ProductInfo';
 import styles from './styles.module.scss';
 
 export function ScannerPage(): JSX.Element {
-  const { barcode, isLoading } = useScanCode();
-  const normalizedBarcodes = useMemo(
-    () => getNormalizedBarcodes(barcodes),
-    [barcodes]
-  );
-  const searchResult = normalizedBarcodes.filter(
-    (item) => item.barcode === barcode
+  const { barCode, isLoading } = useScanBarCode();
+  const searchResult = products.data.filter(
+    (item: ProductInfo) => item.barCode === barCode
   );
 
   if (isLoading) {
     return <PageSpinner text="Идет поиск" />;
   }
 
-  if (barcode) {
+  if (barCode) {
     return <SearchResult data={searchResult} />;
   }
 

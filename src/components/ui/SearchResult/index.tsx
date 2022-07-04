@@ -1,12 +1,12 @@
 import React from 'react';
 import { Table, Typography } from 'antd';
-import { NormalizedBarcode } from '~src/utils';
+import { ProductInfo } from '~src/types/ProductInfo';
 import styles from './styles.module.scss';
 
 const { Title } = Typography;
 
 interface DefaultSearchProps {
-  data?: NormalizedBarcode[];
+  data?: ProductInfo[];
 }
 
 interface SearchResultProps extends DefaultSearchProps {}
@@ -21,8 +21,8 @@ export function SearchResult(props: SearchResultProps): JSX.Element {
   const columns = [
     {
       title: 'Штрих-код',
-      dataIndex: 'barcode',
-      key: 'barcode',
+      dataIndex: 'barCode',
+      key: 'barCode',
     },
     {
       title: 'Значение',

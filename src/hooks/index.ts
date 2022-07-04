@@ -1,2 +1,2 @@
-export * from './useScanCode';
+export * from './useScanBarCode';
 export * from './useGlobalCssVariables';

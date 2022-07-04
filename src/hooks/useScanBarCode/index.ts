@@ -6,12 +6,12 @@ const ON_SCAN_BUTTON_ADDITIONAL = 120;
 const PARSING_TIMEOUT_MS = 5000;
 
 interface UseScanCodeReturn {
-  barcode: string;
+  barCode: string;
   isLoading: boolean;
 }
 
-export function useScanCode(): UseScanCodeReturn {
-  const [barcode, setBarcode] = useState<string>('');
+export function useScanBarCode(): UseScanCodeReturn {
+  const [barCode, setBarCode] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const parsingTimerId = useRef<number | null>(null);
 
@@ -29,7 +29,7 @@ export function useScanCode(): UseScanCodeReturn {
         if (scannedBarcode) {
           setIsLoading(false);
           // setBarcode(scannedBarcode);
-          setBarcode('46902470463891');
+          setBarCode('4690247000565');
 
           stopTimer();
         }
@@ -40,7 +40,7 @@ export function useScanCode(): UseScanCodeReturn {
           keyCode === ON_SCAN_BUTTON_ADDITIONAL
         ) {
           setIsLoading(true);
-          setBarcode('');
+          setBarCode('');
 
           stopTimer();
 
@@ -58,7 +58,7 @@ export function useScanCode(): UseScanCodeReturn {
   }, []);
 
   return {
-    barcode,
+    barCode,
     isLoading,
   };
 }
