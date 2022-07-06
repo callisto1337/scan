@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { ExclamationCircleTwoTone, DeleteOutlined } from '@ant-design/icons';
-import { Typography, Button, Divider } from 'antd';
+import { Typography, Button, Divider, Input } from 'antd';
 import useLocalStorage from 'use-local-storage';
 import { LS_DATA_NAME, LS_DATA_FILE_NAME } from '~src/shared/constants';
 import { isDataFileValid } from '~src/utils';
@@ -24,10 +24,6 @@ export function SettingsPage(): JSX.Element {
       const reader = new FileReader();
       const file = event.target.files[0];
 
-      if (!file) {
-        return;
-      }
-
       reader.readAsText(file);
 
       reader.onload = function () {
@@ -43,6 +39,8 @@ export function SettingsPage(): JSX.Element {
 
         setData(JSON.parse(reader.result as string));
         setDataFileName(file.name);
+
+        event.target.value = '';
       };
 
       reader.onerror = function () {
