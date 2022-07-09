@@ -1,0 +1,16 @@
+{
+  "name": "Scan",
+  "_version": "1.3.0",
+  "short_name": "scan",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "scope": "/",
+  "start_url": ".",
+  "icons": [
+    {
+      "src": "/public/icons/app-icon-512-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

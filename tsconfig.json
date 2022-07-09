@@ -3,14 +3,16 @@
     "baseUrl": ".",
     "strict": true,
     "lib": [
-      "es2017",
+      "esnext",
       "dom"
     ],
     "target": "ES5",
     "jsx": "react",
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
       "~*": ["./*"]
-    }
+    },
+    "module": "esnext"
   }
 }
