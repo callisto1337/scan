@@ -2,6 +2,8 @@
   "name": "Scan",
   "_version": "1.3.0",
   "short_name": "scan",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
   "display": "fullscreen",
   "orientation": "landscape",
   "scope": "/",

@@ -17,7 +17,7 @@ self.addEventListener('activate', function (event) {
       return Promise.all(
         cacheNames
           .filter(function (cacheName) {
-            return cacheName !== version && caches.delete(key);
+            return cacheName !== version && caches.delete(cacheName);
           })
           .map(function (cacheName) {
             return caches.delete(cacheName);

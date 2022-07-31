@@ -23,7 +23,7 @@ const placeholderTextMapper = {
   getData: (
     <>
       <Title className={styles.title} level={3}>
-        Загрузи файл
+        Загрузи базу
         <br />
         <span className={styles.nobr}>со штрих-кодами</span>
       </Title>

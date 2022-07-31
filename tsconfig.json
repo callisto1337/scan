@@ -11,8 +11,20 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "~*": ["./*"]
+      "~src/": ["./src/*"],
+      "~src/utils": ["./src/utils/"],
+      "~src/shared": ["./src/shared/"],
+      "~src/hooks": ["./src/hooks/"],
+      "~src/types": ["./src/types/"],
+      "~src/components": ["./src/components/"],
+      "~src/components/*": ["./src/components/*"],
+      "~src/config": ["./src/config.ts"]
     },
-    "module": "esnext"
-  }
+    "module": "esnext",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "node_modules",
+    "./src"
+  ]
 }

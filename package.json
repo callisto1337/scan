@@ -6,6 +6,7 @@
     "build": "parcel build"
   },
   "devDependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@parcel/packager-raw-url": "^2.5.0",
     "@parcel/transformer-sass": "^2.5.0",
     "@parcel/transformer-webmanifest": "^2.5.0",
@@ -13,20 +14,23 @@
     "@types/onscan.js": "^1.5.2",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
-    "parcel": "^2.5.0",
-    "prettier": "^2.6.2",
-    "process": "^0.11.10",
-    "@ant-design/icons": "^4.7.0",
     "antd": "^4.21.0",
     "antd-mobile": "^5.14.0",
     "antd-mobile-icons": "^0.2.2",
+    "buffer": "^6.0.3",
+    "classnames": "^2.3.1",
     "onscan.js": "^1.5.2",
+    "parcel": "^2.5.0",
+    "prettier": "^2.6.2",
+    "process": "^0.11.10",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-router-dom": "^6.3.0",
-    "use-local-storage": "^2.3.6"
+    "react-router-dom": "^6.3.0"
   },
   "dependencies": {
-    "@parcel/service-worker": "^2.6.2"
+    "@parcel/service-worker": "^2.6.2",
+    "@rehooks/local-storage": "^2.4.4",
+    "axios": "^0.27.2",
+    "dayjs": "^1.11.4"
   }
 }
