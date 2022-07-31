@@ -37,8 +37,8 @@ export function useScanBarCode(props?: UseScanBarCodeProps): UseScanCodeReturn {
 
         if (scannedBarcode) {
           setIsLoading(false);
-          // setBarcode(scannedBarcode);
-          setBarCode('4690247000565');
+          setBarCode(scannedBarcode);
+          // setBarCode('4690247000565');
 
           stopTimer();
         }

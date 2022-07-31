@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, RefObject, useRef, useState } from 'react';
 import { Button, Typography } from 'antd';
 import axios, { AxiosResponse } from 'axios';
 import { CloudUploadOutlined, UploadOutlined } from '@ant-design/icons';
@@ -37,6 +37,7 @@ export function UploadBase(): JSX.Element {
   const [loadingMethod, setLoadingMethod] = useState<'local' | 'server'>(
     'server'
   );
+  const localDeviceInputRef = useRef<HTMLInputElement>();
 
   function showSuccessfulUpload() {
     alert('База успешно загружена!');
@@ -105,6 +106,14 @@ export function UploadBase(): JSX.Element {
       });
   }
 
+  function onLocalDeviceButtonClick() {
+    if (localDeviceInputRef.current) {
+      console.log('click');
+
+      localDeviceInputRef.current?.click();
+    }
+  }
+
   return (
     <div>
       <Title level={4}>Загрузить базу</Title>
@@ -115,8 +124,9 @@ export function UploadBase(): JSX.Element {
         className={styles.action}
         icon={<UploadOutlined />}
         block
+        onClick={onLocalDeviceButtonClick}
       >
-        <label htmlFor="inputFileDevice">С устройства</label>
+        С устройства
       </Button>
       <Button
         disabled={
@@ -132,9 +142,9 @@ export function UploadBase(): JSX.Element {
       >
         С сервера
       </Button>
-
       <input
-        id="inputFileDevice"
+        // @ts-ignore
+        ref={localDeviceInputRef}
         className={styles.input}
         onChange={onUploadFromDevice}
         type="file"

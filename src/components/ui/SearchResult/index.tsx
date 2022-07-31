@@ -36,7 +36,12 @@ export function SearchResult(props: SearchResultProps): JSX.Element {
       <Title level={4} className={styles.title}>
         Результаты поиска
       </Title>
-      <Table pagination={false} dataSource={data} columns={columns} />
+      <Table
+        locale={{ emptyText: 'Не найдено' }}
+        pagination={false}
+        dataSource={data}
+        columns={columns}
+      />
     </div>
   );
 }
