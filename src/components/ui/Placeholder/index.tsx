@@ -7,7 +7,7 @@ const { Title } = Typography;
 
 interface PlaceholderProps {
   className?: string;
-  mode: 'goScan' | 'getData';
+  mode: 'goScan' | 'getData' | 'error';
 }
 
 const placeholderTextMapper = {
@@ -26,6 +26,15 @@ const placeholderTextMapper = {
         Загрузи базу
         <br />
         <span className={styles.nobr}>со штрих-кодами</span>
+      </Title>
+    </>
+  ),
+  error: (
+    <>
+      <Title className={styles.title} level={3}>
+        Получен некорректный
+        <br />
+        <span className={styles.nobr}>или пустой штрих-код</span>
       </Title>
     </>
   ),

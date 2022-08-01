@@ -10,11 +10,7 @@ export function isDataFileValid(data: string): boolean {
       return false;
     }
 
-    if (!parsedJson.products) {
-      return false;
-    }
-
-    return true;
+    return !!parsedJson.data;
   } catch (error) {
     return false;
   }

@@ -8,6 +8,7 @@ const PARSING_TIMEOUT_MS = 5000;
 interface UseScanCodeReturn {
   barCode: string;
   isLoading: boolean;
+  hasError: boolean;
 }
 
 interface UseScanBarCodeProps {
@@ -18,6 +19,7 @@ export function useScanBarCode(props?: UseScanBarCodeProps): UseScanCodeReturn {
   const { disabled } = props || {};
   const [barCode, setBarCode] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<boolean>(false);
   const parsingTimerId = useRef<number | null>(null);
 
   function stopTimer() {
@@ -53,12 +55,14 @@ export function useScanBarCode(props?: UseScanBarCodeProps): UseScanCodeReturn {
           keyCode === ON_SCAN_BUTTON_ADDITIONAL
         ) {
           setIsLoading(true);
+          setHasError(false);
           setBarCode('');
 
           stopTimer();
 
           parsingTimerId.current = setTimeout(() => {
             setIsLoading(false);
+            setHasError(true);
           }, PARSING_TIMEOUT_MS) as unknown as number;
         }
       },
@@ -73,5 +77,6 @@ export function useScanBarCode(props?: UseScanBarCodeProps): UseScanCodeReturn {
   return {
     barCode,
     isLoading,
+    hasError,
   };
 }
