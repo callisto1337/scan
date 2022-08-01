@@ -15,7 +15,7 @@ export function ScannerPage(): JSX.Element {
   const { barCode, isLoading, hasError } = useScanBarCode({
     disabled: isScannerDisabled,
   });
-  const searchResult = storageData?.data.filter(
+  const searchResult = storageData?.data?.filter(
     (item: ProductInfo) => item.barCode === barCode
   );
   function getCurrentMode(): 'error' | 'getData' | 'goScan' {
